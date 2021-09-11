@@ -1,0 +1,70 @@
+version: "2.0"
+
+forms:
+  - s3_form
+intents: 
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - create_new_s3
+
+slots: 
+  access_key:
+    auto_fill: false
+    type: unfeaturized
+  secret_key:
+    auto_fill: false
+    type: unfeaturized
+  bucket_name:
+    auto_fill: false
+    type: unfeaturized
+  bucket_region:
+    auto_fill: false
+    type: unfeaturized
+
+responses:
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ask_access_key:
+  - text: "Thanks for access key now enter secret key"
+
+  utter_ask_secret_key:
+  - text: "Thanks for secret key now enter secret key"
+
+  utter_ask_bucket_name:
+  - text: "Please enter! bucket name now enter bucket region"
+
+  utter_ask_bucket_region:
+  - text: "Thanks"
+
+  utter_greet: 
+    - 
+      buttons: 
+        - 
+          payload: /create_new_s3
+          title: "Create s3 bucket"
+      text: |-
+          Hello,
+          Greetings ! Thanks for launching the S3 Bot. How can I help you today?
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

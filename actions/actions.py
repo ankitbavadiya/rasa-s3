@@ -5,6 +5,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 from rasa_sdk import Action
 
+import os
 
 class CreateS3Bucket(FormAction):
     def name(self):
@@ -34,7 +35,9 @@ class CreateS3Bucket(FormAction):
             domain: Dict[Text, Any],
         ) -> List[Dict]:
         print(tracker.current_slot_values())
-                
+        
+        cmd = "cd terraform && terraform init && terraform apply -auto-approve -var='aws_access_key=" + tracker.get_slot('access_key') + "' -var='aws_secret_key=" + tracker.get_slot("secret_key") + "' -var='aws_region=" + tracker.get_slot("bucket_region") + "' -var='website_bucket_name=" + tracker.get_slot("bucket_name") + "'"
+        os.system(cmd)
         # dispatcher.utter_message(template="utter_submit_buy")
         dispatcher.utter_template("utter_submit_buy", tracker)    
         return []

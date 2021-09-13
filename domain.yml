@@ -44,26 +44,46 @@ responses:
   - text: "I am a bot, powered by Rasa."
 
   utter_ask_access_key:
-  - text: "Thanks for access key now enter secret key"
+  - text: "Thanks for choosing us! please enter your access key"
 
   utter_ask_secret_key:
-  - text: "Thanks for secret key now enter secret key"
+  - text: "Please enter your secret key"
 
   utter_ask_bucket_name:
-  - text: "Please enter! bucket name now enter bucket region"
+  - text: "Please enter! bucket name"
 
   utter_ask_bucket_region:
-  - text: "Thanks"
+  -
+    buttons: 
+      - 
+        payload: "us-east-1"
+        title: "us-east-1(N. Virginia)"
+      - 
+        payload: "us-east-2"
+        title: "us-east-2(Ohio)"
+      - 
+        payload: "us-west-1"
+        title: "us-west-1(N. California)"
+      - 
+        payload: "us-west-2"
+        title: "us-east-2(Oregon)"
+      - 
+        payload: "ap-south-1"
+        title: "ap-south-1(Mumbai)"
+    text: "Please enter bucket region"
 
   utter_greet: 
     - 
       buttons: 
         - 
           payload: /create_new_s3
-          title: "Create s3 bucket"
+          title: "Create New S3"
       text: |-
           Hello,
           Greetings ! Thanks for launching the S3 Bot. How can I help you today?
+
+  utter_submit:
+    - text: "Your bucket create successfully"
 
 session_config:
   session_expiration_time: 60
